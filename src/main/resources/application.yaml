@@ -7,7 +7,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-    database: h2
+    open-in-view: false
   datasource:
     driverClassName: org.h2.Driver
     url: jdbc:h2:mem:treatment-plan;DB_CLOSE_DELAY=-1

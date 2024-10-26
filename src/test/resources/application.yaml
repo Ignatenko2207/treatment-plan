@@ -9,7 +9,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    database: h2
     open-in-view: false
   datasource:
     driverClassName: org.h2.Driver
