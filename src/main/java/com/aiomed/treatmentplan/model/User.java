@@ -2,6 +2,7 @@ package com.aiomed.treatmentplan.model;
 
 import com.aiomed.treatmentplan.model.enums.Gender;
 import com.aiomed.treatmentplan.model.enums.UserRole;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,6 +43,7 @@ public class User {
     @Column(name = "gender")
     private Gender gender;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 

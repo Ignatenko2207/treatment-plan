@@ -17,7 +17,7 @@ public class TreatmentTaskController {
     private final TreatmentTaskService treatmentTaskService;
 
     @PostMapping("create")
-    public ResponseEntity<TreatmentTask> create(TreatmentTask treatmentTask) {
+    public ResponseEntity<TreatmentTask> create(@RequestBody TreatmentTask treatmentTask) {
         TreatmentTask result = treatmentTaskService.create(treatmentTask);
         if (Objects.nonNull(result)) {
             return new ResponseEntity<>(result, HttpStatus.CREATED);

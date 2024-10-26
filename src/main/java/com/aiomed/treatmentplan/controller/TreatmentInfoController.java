@@ -18,7 +18,7 @@ public class TreatmentInfoController {
     private final TreatmentInfoService treatmentInfoService;
 
     @PostMapping("create")
-    public ResponseEntity<TreatmentInfo> create(TreatmentInfo treatmentInfo) {
+    public ResponseEntity<TreatmentInfo> create(@RequestBody TreatmentInfo treatmentInfo) {
         TreatmentInfo result = treatmentInfoService.create(treatmentInfo);
         if (Objects.nonNull(result)) {
             return new ResponseEntity<>(result, HttpStatus.CREATED);

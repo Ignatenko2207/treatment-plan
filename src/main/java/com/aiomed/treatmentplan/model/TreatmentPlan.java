@@ -1,6 +1,7 @@
 package com.aiomed.treatmentplan.model;
 
 import com.aiomed.treatmentplan.model.enums.TreatmentPlanStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,10 +23,12 @@ public class TreatmentPlan {
     @ManyToOne
     private User user;
 
-    @Column(name = "start_time", nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    @Column(name = "start_time")
     private LocalDateTime startTime;
 
     // if null, it can be considered as one-time action
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     @Column(name = "end_time")
     private LocalDateTime endTime;
 
