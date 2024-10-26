@@ -21,7 +21,7 @@ public class TreatmentPlanServiceImpl implements TreatmentPlanService {
     @Override
     public TreatmentPlan create(TreatmentPlan treatmentPlan) {
         try {
-            if (Objects.nonNull(treatmentPlan.getId())) {
+            if (Objects.isNull(treatmentPlan.getId())) {
                 return treatmentPlanRepository.saveAndFlush(treatmentPlan);
             }
             log.warn("TreatmentPlan id can't be null");

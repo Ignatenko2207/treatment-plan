@@ -23,7 +23,7 @@ public class TreatmentInfoServiceImpl implements TreatmentInfoService {
     @Override
     public TreatmentInfo create(TreatmentInfo treatmentInfo) {
         try {
-            if (Objects.nonNull(treatmentInfo.getId())) {
+            if (Objects.isNull(treatmentInfo.getId())) {
                 return treatmentInfoRepository.saveAndFlush(treatmentInfo);
             }
             log.warn("TreatmentInfo id can't be null");

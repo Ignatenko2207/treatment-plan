@@ -21,7 +21,7 @@ public class TreatmentTaskServiceImpl implements TreatmentTaskService {
     @Override
     public TreatmentTask create(TreatmentTask treatmentTask) {
         try {
-            if (Objects.nonNull(treatmentTask.getId())) {
+            if (Objects.isNull(treatmentTask.getId())) {
                 return treatmentTaskRepository.saveAndFlush(treatmentTask);
             }
             log.warn("TreatmentTask id can't be null");

@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
         try {
-            if (Objects.nonNull(user.getId())) {
+            if (Objects.isNull(user.getId())) {
                 return userRepository.saveAndFlush(user);
             }
             log.warn("User id can't be null");
