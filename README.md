@@ -11,11 +11,11 @@
 
 ### Steps to launch
 
-1. Clone the application from repository ...
+1. Clone the application from repository https://github.com/Ignatenko2207/treatment-plan
 2. Open and build it in IDE
 3. Execute method main in TreatmentPlanApplication
 
 ### Steps to use
 
-1. Open browser and use link ... to open swagger
+1. Open browser and use link http://localhost:8080/swagger-ui/index.html to open swagger
 2. 
