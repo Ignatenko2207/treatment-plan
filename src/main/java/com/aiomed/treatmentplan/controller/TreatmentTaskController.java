@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -28,6 +29,14 @@ public class TreatmentTaskController {
     @GetMapping("find-by-id")
     public ResponseEntity<TreatmentTask> findById(@RequestParam("id") Integer id) {
         return new ResponseEntity<>(treatmentTaskService.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("find-by-parameters")
+    public ResponseEntity<List<TreatmentTask>> findById(
+            @RequestParam("userId") Integer userId,
+            @RequestParam("startTime") String startTime
+    ) {
+        return new ResponseEntity<>(treatmentTaskService.findAllByUserAndStartTime(userId, startTime), HttpStatus.OK);
     }
 
     @PutMapping("update")

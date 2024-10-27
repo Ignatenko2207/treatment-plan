@@ -1,6 +1,7 @@
 package com.aiomed.treatmentplan.service.impl;
 
 import com.aiomed.treatmentplan.model.TreatmentTask;
+import com.aiomed.treatmentplan.model.enums.TreatmentTaskStatus;
 import com.aiomed.treatmentplan.repository.TreatmentTaskRepository;
 import com.aiomed.treatmentplan.service.TreatmentTaskService;
 import jakarta.transaction.Transactional;
@@ -8,6 +9,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -66,6 +71,29 @@ public class TreatmentTaskServiceImpl implements TreatmentTaskService {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
+    }
+
+    @Override
+    public List<TreatmentTask> findAllByUserAndStartTime(Integer userId, String startTime) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime time = LocalDateTime.parse(startTime, formatter);
+            return treatmentTaskRepository.findAllByUserIdAndStartTimeAfterAndStatus(userId, time, TreatmentTaskStatus.CREATED);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    public TreatmentTask findByStatusInAndUserIdAndTreatmentIdAndStartTime(List<TreatmentTaskStatus> statuses, Integer userId, Integer treatmentId, LocalDateTime startTime) {
+        try {
+            return treatmentTaskRepository.findByStatusInAndUserIdAndTreatmentIdAndStartTime(
+                    statuses, userId, treatmentId, startTime).orElse(null);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return null;
     }
 
 }

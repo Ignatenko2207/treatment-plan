@@ -1,13 +1,17 @@
 package com.aiomed.treatmentplan.service.impl;
 
 import com.aiomed.treatmentplan.model.Treatment;
+import com.aiomed.treatmentplan.model.enums.TreatmentStatus;
 import com.aiomed.treatmentplan.repository.TreatmentRepository;
 import com.aiomed.treatmentplan.service.TreatmentService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -22,6 +26,11 @@ public class TreatmentServiceImpl implements TreatmentService {
     public Treatment create(Treatment treatment) {
         try {
             if (Objects.isNull(treatment.getId())) {
+                if (treatment.getRepeatable() && StringUtils.isBlank(treatment.getCronExpression())) {
+                    log.warn("Treatment with repeatable property" +
+                            " cannot be created without cron expression");
+                    return null;
+                }
                 return treatmentRepository.saveAndFlush(treatment);
             }
             log.warn("Treatment id can't be null");
@@ -37,6 +46,11 @@ public class TreatmentServiceImpl implements TreatmentService {
     public Treatment update(Treatment treatment) {
         try {
             if (Objects.nonNull(treatment.getId())) {
+                if (treatment.getRepeatable() && StringUtils.isBlank(treatment.getCronExpression())) {
+                    log.warn("Treatment with repeatable property" +
+                            " cannot be updated without cron expression");
+                    return null;
+                }
                 return treatmentRepository.saveAndFlush(treatment);
             }
             log.warn("Treatment id can't be not null");
@@ -66,6 +80,16 @@ public class TreatmentServiceImpl implements TreatmentService {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
+    }
+
+    @Override
+    public List<Treatment> findAllByStatus(TreatmentStatus treatmentStatus) {
+        try {
+            return treatmentRepository.findAllByStatus(treatmentStatus);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return Collections.emptyList();
     }
 
 }

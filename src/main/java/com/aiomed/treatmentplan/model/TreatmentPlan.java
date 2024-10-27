@@ -20,11 +20,11 @@ public class TreatmentPlan {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm")
-    @Column(name = "start_time")
+    @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
 
     // if null, it can be considered as one-time action

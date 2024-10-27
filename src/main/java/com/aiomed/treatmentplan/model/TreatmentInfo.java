@@ -20,6 +20,7 @@ public class TreatmentInfo {
     @Column(name = "description", nullable = false)
     private String description;
 
+    // duration in days
     // if null or zero, it can be considered as one-time action
     @Column(name = "duration")
     private Long duration;

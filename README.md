@@ -18,4 +18,7 @@
 ### Steps to use
 
 1. Open browser and use link http://localhost:8080/swagger-ui/index.html to open swagger
-2. 
+2. Now you can create, update, get or delete entities
+3. As a doctor you can create separate treatment for the patient or 
+create treatment plan with several treatments within. Also, you can create tasks manually.
+4. As a nurse you can get active tasks by user and time
