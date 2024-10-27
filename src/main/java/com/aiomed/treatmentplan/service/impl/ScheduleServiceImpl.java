@@ -28,8 +28,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     private final TreatmentTaskService treatmentTaskService;
 
     // cron can be set in properties and sequence depends on client's processes
-    // every 10 minutes by default
-    @Scheduled(cron = "0 */10 * * * *")
+    // every 15 minutes by default
+    @Scheduled(cron = "0 */15 * * * *")
     @Override
     public void createTasksFromTreatments() {
         List<Treatment> treatments = treatmentService.findAllByStatus(TreatmentStatus.ACTIVE);
