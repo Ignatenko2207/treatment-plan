@@ -89,11 +89,8 @@ public class ScheduleServiceImpl implements ScheduleService {
                 }
             } else {
                 CronExpression cronExpression = CronExpression.parse(treatment.getCronExpression());
-                LocalDateTime nextTime = cronExpression.next(LocalDateTime.now());
+                LocalDateTime nextTime = cronExpression.next(treatment.getStartTime());
                 if (Objects.nonNull(nextTime)) {
-                    if (treatment.getStartTime().isAfter(nextTime)) {
-                        return cronExpression.next(treatment.getStartTime());
-                    }
                     if (Objects.nonNull(treatment.getEndTime()) && nextTime.isAfter(treatment.getEndTime())) {
                         return treatment.getEndTime();
                     }
