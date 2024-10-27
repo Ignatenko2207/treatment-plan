@@ -21,7 +21,7 @@
 2. Now you can create, update, get or delete entities
 3. As a doctor you can create separate treatment for the patient or 
 create treatment plan with several treatments within. Also, you can create tasks manually.
-4. Tasks also are generated from treatment data - checks every 15 minutes. If we have a lot of treatments, it's better to use separate tables for userrs, tretment info etc. We set just ids in treatment in this case 
+4. Tasks also are generated from treatment data - checks every 15 minutes. If we have a lot of treatments, it's better to use separate tables for users, tretment info etc. We set just ids of that references in the treatment in this case 
 5. As a nurse you can get active tasks by user and time
 
 ### Other important information
